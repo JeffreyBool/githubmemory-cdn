@@ -1,17 +1,19 @@
 function UserContributions(contributionCalendar) {
-    let index = 0;
+    let idx = 0;
     let commits = [];
     for (let i = 0; i < contributionCalendar.weeks.length; i++) {
         for (let j = 0; j < contributionCalendar.weeks[i].contributionDays.length; j++) {
             let contribution = contributionCalendar.weeks[i].contributionDays[j];
-            commits[index] = [contribution.date, contribution.contributionCount];
-            index++
+            commits[idx] = [contribution.date, contribution.contributionCount];
+            idx++
         }
     }
 
-    let now = moment();
-    let start = now.format('YYYY-MM-DD');
-    let end = now.add(-1, 'y').format('YYYY-MM-DD');
+    let now = new Date();
+    let start = now.format('yyyy-MM-dd');
+    now.setFullYear((now.getFullYear()-1));
+    let end =now.format('yyyy-MM-dd');
+
     if (commits.length > 0) {
         start = commits[0][0];
         end = commits[commits.length - 1][0];

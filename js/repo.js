@@ -1,4 +1,3 @@
-const github_returned_max_stars = 39999;
 const mill_sec_one_day = 24 * 3600 * 1000;
 
 /**
@@ -7,10 +6,10 @@ const mill_sec_one_day = 24 * 3600 * 1000;
  */
 function language_chart(languages) {
     let language = [];
-    for (let index in languages.edges) {
+    for (let idx in languages.edges) {
         let item = {};
-        item['value'] = languages.edges[index].size;
-        item['name'] = languages.edges[index].node.name;
+        item['value'] = languages.edges[idx].size;
+        item['name'] = languages.edges[idx].node.name;
         language.push(item)
     }
 
@@ -116,14 +115,12 @@ function contributions(contributions) {
 
     let commits = [];
     for (let i = 0; i < days; i++) {
-        let time = new Date(one_year_ago.getTime() + i * mill_sec_one_day).getTime() / 1000;
-        let date = moment.unix(time).format('YYYY-MM-DD');
+        let date = new Date(one_year_ago.getTime() + i * mill_sec_one_day).format('yyyy-MM-dd');
         commits[i] = [date, contributions[Math.floor(i / 7)]['days'][i % 7]]
     }
 
-    let start = moment(one_year_ago).format('YYYY-MM-DD');
-    let end = moment(today).format('YYYY-MM-DD');
-
+    let start = one_year_ago.format('yyyy-MM-dd');
+    let end = today.format('yyyy-MM-dd');
     let contributionsChart = echarts.init(document.getElementById('contribution'));
     let option = {
         title: {
