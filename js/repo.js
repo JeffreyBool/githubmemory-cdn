@@ -125,7 +125,7 @@ function contributions(contributions) {
     let option = {
         title: {
             top: 0,
-            text: days+' contributions in the last year',
+            text: contributions.length+' contributions in the last year',
             left: 'center',
             textStyle: {
                 color: '#3C4858'
