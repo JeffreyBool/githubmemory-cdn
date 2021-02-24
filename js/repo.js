@@ -113,9 +113,11 @@ function contributions(contributions) {
     let days = 51 * 7 + week + 1;
     let one_year_ago = new Date(today.getTime() - (days - 1) * mill_sec_one_day);
 
+    let count = 0;
     let commits = [];
     for (let i = 0; i < days; i++) {
         let date = new Date(one_year_ago.getTime() + i * mill_sec_one_day).format('yyyy-MM-dd');
+        count += contributions[Math.floor(i / 7)]['days'][i % 7];
         commits[i] = [date, contributions[Math.floor(i / 7)]['days'][i % 7]]
     }
 
@@ -125,7 +127,7 @@ function contributions(contributions) {
     let option = {
         title: {
             top: 0,
-            text: contributions.length+' contributions in the last year',
+            text: count+' contributions in the last year',
             left: 'center',
             textStyle: {
                 color: '#3C4858'
